@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from "react-router-dom";
 import "./css/materialize.css"
 import "./css/style.css"
 import background from "./background.jpg"
@@ -21,7 +22,7 @@ class welcome extends Component {
           <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
         </div>
         <div className="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1 large pulse">Get Started</a>
+          <Link to="/login" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1 large pulse">Get Started</Link>
         </div>
         <br/><br/>
 
@@ -110,4 +111,4 @@ class welcome extends Component {
     }
 }
  
-export default welcome;
+export default withRouter (welcome);

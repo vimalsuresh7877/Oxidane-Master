@@ -1,16 +1,24 @@
 import React from 'react';
 import {BrowserRouter,Switch,Route} from "react-router-dom"
+import { GuardProvider, GuardedRoute } from 'react-router-guards';
 import welcome from "./components/welcome"
-import Userroute from "./Routes/userRoute"
-import Profile from "./components/profile" 
+import Login from "./components/loginpage" 
+
+import loading from "./components/loading"
+import Error from "./components/error"
+import {isAuthenticate} from "./Routes/user"
 
 const Routes = ()=>{
     return(
         <BrowserRouter>
+      
         <Switch>
             <Route path="/" exact component={welcome}/>
-            <Userroute path="/login" exact component={Profile} />
+            <Route path="/loginpage" exact component={Login}/>
+
+         
         </Switch>
+       
         </BrowserRouter>
     )
 };

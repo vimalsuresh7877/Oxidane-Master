@@ -22,7 +22,7 @@ class welcome extends Component {
           <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
         </div>
         <div className="row center">
-          <Link to="/login" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1 large pulse">Get Started</Link>
+          <Link to="/loginpage" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1 large pulse">Get Started</Link>
         </div>
         <br/><br/>
 

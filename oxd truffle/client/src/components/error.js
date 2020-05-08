@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-class profile extends Component {
+class error extends Component {
     state = {  }
     render() { 
         return ( 
-            <h1>Hello im profile</h1>
+            <h1>Error Not Found</h1>
          );
     }
 }
  
-export default profile;
+export default error;

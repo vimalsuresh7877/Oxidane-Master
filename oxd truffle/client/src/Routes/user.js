@@ -13,10 +13,10 @@ async function loadWeb3() {
     }
   }
 
-export async function isAuthenticate(){
+ export const isAuthenticate=async()=>{
       await loadWeb3();
-      var registered;
-      var account;
+      let registered;
+      let account;
     const web3 = window.web3
 
     const accounts = await web3.eth.getAccounts()
@@ -35,10 +35,11 @@ const kycinst=new web3.eth.Contract(Kyc.abi,KycData.address)
 let kycaddr= await kycinst.methods.registration(account).call()
 
 if(kycaddr.acountno===account){
-registered=true;
+registered=true
 }
-}else{
-registered=false;
-  }
-return registered;
+else{
+  registered=false
+}
+}
+return registered
 }

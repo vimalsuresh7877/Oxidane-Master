@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import "./css/materialize.css"
 import "./css/style.css"
-import background from "./background.jpg"
-import background1 from "./background1.jpg"
-import background2 from "./background2.jpg"
+import background from "./images/background.jpg"
+import background1 from "./images/background1.jpg"
+import background2 from "./images/background2.jpg"
 
 
 

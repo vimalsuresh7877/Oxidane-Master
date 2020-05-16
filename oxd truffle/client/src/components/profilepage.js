@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Web3 from "web3";
 import OxidaneToken from "../contracts/OxidaneToken.json"
 import TokenSale from "../contracts/TokenSale.json"
+import Wallet from "../components/wallet"
+import BuyToken from "../components/buyToken"
+import SellToken from "../components/sellToken"
+import TokenExchange from "../components/tokenExchange"
 class Profilepage extends Component {
     async componentWillMount() {
         await this.loadWeb3()
@@ -80,12 +84,44 @@ class Profilepage extends Component {
         tokensale: {},
         tokenBalance:"0",
        registered:false,
-       kycinst:{}
+       kycinst:{},
+       currentpage:"buy"
       };
     }
-    render() { 
+    render() 
+    
+    { 
+      let content;
+      if(this.state.currentpage=="buy"){
+        content=<BuyToken/>
+      }
+      else if (this.state.currentpage=="sell"){
+        content=<SellToken/>
+      }
+      else{
+        content=<TokenExchange/>
+      }
         return ( 
-            <h1>hello im profile page</h1>
+          <div>
+            <Wallet ethBalance={this.state.ethBalance} tokenBalance={this.state.tokenBalance}/>
+            <div className="container">
+            <div class="row">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <button class="waves-effect waves-light btn" onClick={(event)=>{this.setState({currentpage:"buy"})}}>Buy</button>
+          <button class="waves-effect waves-light btn" onClick={(event)=>{this.setState({currentpage:"sell"})}} >Sell</button>
+          <button class="waves-effect waves-light btn" onClick={(event)=>{this.setState({currentpage:"exchange"})}}>Exchange</button>
+        </div>
+        <div class="card-action">
+          {content}
+        </div>
+      </div>
+    </div>
+  </div>
+            </div>
+            </div>
          );
     }
 }

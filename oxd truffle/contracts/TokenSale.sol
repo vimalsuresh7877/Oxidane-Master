@@ -4,7 +4,7 @@ import "./OxidaneToken.sol";
 contract TokenSale{
     string public name ="Token Sale";
     OxidaneToken public token;
-    uint public rate = 100;
+    uint public rate = 44;
 event TokenPurchase(address account,address token,uint amount,uint rate);
     constructor(OxidaneToken _token)public{
         token = _token;
@@ -15,8 +15,7 @@ event TokenPurchase(address account,address token,uint amount,uint rate);
     uint amount,
     uint rate
   );
-    function buytokens() public payable{
-        uint tokenAmount = msg.value * rate;
+    function buytokens(uint tokenAmount) public payable{
         require(token.balanceOf(address(this))>=tokenAmount);
         address customer = msg.sender;
         token.transfer(customer,tokenAmount);

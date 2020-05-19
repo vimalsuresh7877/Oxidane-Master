@@ -54,7 +54,7 @@ class Profilepage extends Component {
     const tokensaleData = TokenSale.networks[networkId]
     if(tokensaleData){
       const tokensale =new web3.eth.Contract(TokenSale.abi,tokensaleData.address)
-      this.setState({tokensale})
+      this.setState({tokensale:tokensale, tokensaleaddr:tokensaleData.address})
      
     }else{
       window.alert("Tokensale contract not deployed to network")
@@ -63,17 +63,20 @@ class Profilepage extends Component {
     this.setState({loading:false });
           }
          
-    buyTokens=(etherAmount)=>{
+    buyTokens=(tokenAmount,etherAmount)=>{
       this.setState({loadind:true})
-      this.state.tokensale.methods.buytokens().send({value:etherAmount,from:this.state.account}).on("transactionHash",(hash)=>{
-        this.setState({loading:false})
+      this.state.tokensale.methods.buytokens(tokenAmount).send({value:etherAmount,from:this.state.account}).on("transactionHash",(hash)=>{
+        this.loadBlockchainData()
       })
     }
-    setCustomer=(_name,_adharno)=>{
-      console.log(_name,_adharno)
-       this.state.kycinst.methods.signup(_name,_adharno).send({from:this.state.account}).on("transactionHash",(hash)=>{
-        this.setState({loading:false}) });
-     
+    sellTokens = (tokenAmount) => {
+      
+      this.state.token.methods.approve(this.state.tokensaleaddr, tokenAmount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+        this.state.tokensale.methods.sellTokens(tokenAmount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+          this.loadBlockchainData()
+          
+        })
+      })
     }
     constructor(props) {
       super(props);
@@ -85,7 +88,8 @@ class Profilepage extends Component {
         tokenBalance:"0",
        registered:false,
        kycinst:{},
-       currentpage:"buy"
+       currentpage:"buy",
+       tokensaleaddr:""
       };
     }
     render() 
@@ -93,10 +97,10 @@ class Profilepage extends Component {
     { 
       let content;
       if(this.state.currentpage=="buy"){
-        content=<BuyToken/>
+        content=<BuyToken buyTokens={this.buyTokens}/>
       }
       else if (this.state.currentpage=="sell"){
-        content=<SellToken/>
+        content=<SellToken  tokensaleaddr={this.state.tokensaleaddr} sellTokens={this.sellTokens}/>
       }
       else{
         content=<TokenExchange/>

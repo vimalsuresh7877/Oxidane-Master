@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Web3 from "web3";
-import Kyc from "../contracts/Kyc.json"
+import Kyc from "../../contracts/Kyc.json"
 import  Profilepage from "./profilepage";
 import Signup from "./signuppage";
 

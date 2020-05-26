@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Web3 from "web3";
-import OxidaneToken from "../contracts/OxidaneToken.json"
-import TokenSale from "../contracts/TokenSale.json"
-import Wallet from "../components/wallet"
-import BuyToken from "../components/buyToken"
-import SellToken from "../components/sellToken"
-import TokenExchange from "../components/tokenExchange"
+import OxidaneToken from "../../contracts/OxidaneToken.json"
+import TokenSale from "../../contracts/TokenSale.json"
+import Wallet from "./wallet"
+import BuyToken from "./buyToken"
+import SellToken from "./sellToken"
+import TokenExchange from "./tokenExchange"
 class Profilepage extends Component {
     async componentWillMount() {
         await this.loadWeb3()

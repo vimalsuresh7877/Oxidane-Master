@@ -9,6 +9,7 @@ contract Kyc{
     
    mapping(address=>regcustomer)public registration;
    mapping(uint=>address)public adharverify;
+  mapping(string=>uint) public Exchange;
    event customerreg(string _name,uint _adharno,address customer);
     function signup(string memory _name,uint _adharno)public
         {
@@ -18,7 +19,13 @@ contract Kyc{
             registration[msg.sender].adharno=_adharno;
            
             registration[msg.sender].acountno=msg.sender;
-            emit customerreg(_name,_adharno,msg.sender);
+            
+        }
+
+        function registerExchange(string memory _exchangeaddr) public
+        {
+          
+          Exchange[_exchangeaddr]=1;
         }
 
 }

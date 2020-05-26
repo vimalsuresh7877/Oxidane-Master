@@ -23,6 +23,7 @@ class welcome extends Component {
         </div>
         <div className="row center">
           <Link to="/loginpage" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1 large pulse">Get Started</Link>
+          <Link to="/admin" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1 large pulse">Admin</Link>
         </div>
         <br/><br/>
 

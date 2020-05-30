@@ -6,10 +6,12 @@ contract Kyc{
       address acountno;
       uint adharno;
      }
-    
+    uint public exchangecount=0;
    mapping(address=>regcustomer)public registration;
    mapping(uint=>address)public adharverify;
-  mapping(string=>uint) public Exchange;
+  mapping(address=>uint) public exchangereg;
+  mapping(uint=>address) public exchange;
+
    event customerreg(string _name,uint _adharno,address customer);
     function signup(string memory _name,uint _adharno)public
         {
@@ -22,10 +24,11 @@ contract Kyc{
             
         }
 
-        function registerExchange(string memory _exchangeaddr) public
+        function registerExchange(address _exchangeaddr) public
         {
-          
-          Exchange[_exchangeaddr]=1;
+         exchangecount++ ;
+          exchange[exchangecount]=_exchangeaddr;
+          exchangereg[_exchangeaddr]=1;
         }
 
 }
